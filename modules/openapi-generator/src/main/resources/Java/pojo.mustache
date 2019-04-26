@@ -58,6 +58,26 @@ public class {{classname}} {{#parent}}extends {{{parent}}} {{/parent}}{{#parcela
   public static final String SERIALIZED_NAME_{{nameInSnakeCase}} = "{{baseName}}";
   @SerializedName(SERIALIZED_NAME_{{nameInSnakeCase}})
   {{/gson}}
+  {{#vendorExtensions.x-jpa.id}}
+    // x-jpa-id
+    @Id
+  {{/vendorExtensions.x-jpa.id}}
+  {{#vendorExtensions.x-jpa.one2one}}
+    // x-jpa-one2one
+    @OneToOne
+  {{/vendorExtensions.x-jpa.one2one}}
+  {{#vendorExtensions.x-jpa.one2many}}
+    // x-jpa-one2many
+    @OneToMany
+  {{/vendorExtensions.x-jpa.one2many}}
+  {{#vendorExtensions.x-jpa.column}}
+    // x-jpa-column
+    @Column(unique = true, nullable = false)
+  {{/vendorExtensions.x-jpa.column}}
+  {{#vendorExtensions.x-jpa.ordercolumn}}
+    // x-jpa-ordercolumn
+    @OrderColumn(name = "ord")
+  {{/vendorExtensions.x-jpa.ordercolumn}}
   private {{{datatypeWithEnum}}} {{name}}{{#defaultValue}} = {{{.}}}{{/defaultValue}};
 
   {{/vars}}
